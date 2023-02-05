@@ -1,5 +1,10 @@
-# Yatzy
----
-- Author: Dan Ngendahayo
+# Wordle
 
-- Ce dépôt a pour objectif de remplir les exigences du lab01
+---
+
+- Author: Dan Ngendahayo
+- Description: Wordle game using HTML, CSS and JS
+
+## Links
+
+- [System Design Document](./docs//design_system.md)
