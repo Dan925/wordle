@@ -38,12 +38,18 @@ main {
   border-top: 1px solid black;
   display: flex;
 }
+.board-cell,
+.key-button {
+  font-weight: bold;
+  text-transform: uppercase;
+}
 .board-cell {
   width: 20%;
   height: 100%;
   border-right: 1px solid black;
-  text-align: justify;
-  text-justify: inter-word;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .key-row {

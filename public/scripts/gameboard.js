@@ -2,6 +2,8 @@
 let currentCell = 0;
 let currentWord="";
 const gameCells = document.querySelectorAll('.board-cell');
+const resultsElem = document.querySelector('.results');
+const resetBtn = document.createElement('button');
 
 const getCurrentCellPosition = (wordPosition=WordleState.getGuessCount(),cellPosition=currentCell)=>wordPosition*MAX_WORD_LENGTH + cellPosition;
 
@@ -29,13 +31,18 @@ const handleSubmitWord = ()=>{
     currentCell=0;
 }
 
+
 const updateBoard=(wordStatus)=>{
-    // TODO: change each cell color from current word to reflect wordStatus
     for(let i=0;i<5;i++){
         const cellNumber = getCurrentCellPosition(WordleState.getGuessCount()-1,i);
         gameCells[cellNumber].classList.add(wordStatus[i])
     }
+    if(WordleState.hasWon()){
+        resultsElem.textContent=`You have won in ${WordleState.getGuessCount()} guesses!!!`
+        resultsElem.appendChild(resetBtn);
     
+    }
+   
 
 }
 
@@ -43,4 +50,13 @@ const handleResetBoard = ()=>{
     currentWord="";
     currentCell=0; 
     WordleState.reset();
+    gameCells.forEach(cell=>{
+        cell.textContent="";
+        cell.classList.remove("green","yellow","gray");
+    })
+    resultsElem.textContent="";
+    resultsElem.removeChild(resetBtn);
+
 }
+
+resetBtn.addEventListener('click',handleResetBoard);
