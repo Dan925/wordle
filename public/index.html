@@ -6,7 +6,7 @@
     <title>Wordle</title>
     <link rel="stylesheet" href="/public/styles/index.css" />
     <script src="../public/scripts/words.js"/></script>
-    <script src="../public/scripts/gameboard.js"/></script>
+    <script src="../public/scripts/wordleState.js"/></script>
   </head>
   <body>
     <header>
@@ -59,40 +59,42 @@
       </section>
       <section id="keyboard">
         <div class="key-row">
-          <button class="key-button">q</button>
-          <button class="key-button">w</button>
-          <button class="key-button">e</button>
-          <button class="key-button">r</button>
-          <button class="key-button">t</button>
-          <button class="key-button">y</button>
-          <button class="key-button">u</button>
-          <button class="key-button">i</button>
-          <button class="key-button">o</button>
-          <button class="key-button">p</button>
+          <button value="q" class="key-button">q</button>
+          <button value="w" class="key-button">w</button>
+          <button value="e" class="key-button">e</button>
+          <button value="r" class="key-button">r</button>
+          <button value="t" class="key-button">t</button>
+          <button value="y" class="key-button">y</button>
+          <button value="u" class="key-button">u</button>
+          <button value="i" class="key-button">i</button>
+          <button value="o" class="key-button">o</button>
+          <button value="p" class="key-button">p</button>
         </div>
         <div class="key-row">
-          <button class="key-button">a</button>
-          <button class="key-button">s</button>
-          <button class="key-button">d</button>
-          <button class="key-button">f</button>
-          <button class="key-button">g</button>
-          <button class="key-button">h</button>
-          <button class="key-button">j</button>
-          <button class="key-button">k</button>
-          <button class="key-button">l</button>
+          <button value="a" class="key-button">a</button>
+          <button value="s" class="key-button">s</button>
+          <button value="d" class="key-button">d</button>
+          <button value="f" class="key-button">f</button>
+          <button value="g" class="key-button">g</button>
+          <button value="h" class="key-button">h</button>
+          <button value="j" class="key-button">j</button>
+          <button value="k" class="key-button">k</button>
+          <button value="l" class="key-button">l</button>
         </div>
         <div class="key-row">
-          <button class="key-button">Del</button>
-          <button class="key-button">z</button>
-          <button class="key-button">x</button>
-          <button class="key-button">c</button>
-          <button class="key-button">v</button>
-          <button class="key-button">b</button>
-          <button class="key-button">n</button>
-          <button class="key-button">m</button>
-          <button class="key-button">Enter</button>
+          <button value = "Del" class="key-button">Del</button>
+          <button value="z" class="key-button">z</button>
+          <button value="x" class="key-button">x</button>
+          <button value="c" class="key-button">c</button>
+          <button value="v" class="key-button">v</button>
+          <button value="b" class="key-button">b</button>
+          <button value="n" class="key-button">n</button>
+          <button value="m" class="key-button">m</button>
+          <button value = "Enter" class="key-button">Enter</button>
         </div>
       </section>
     </main>
+    <script src="../public/scripts/gameboard.js"/></script>
+    <script src="../public/scripts/events.js"></script>
   </body>
 </html>

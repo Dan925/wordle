@@ -1,53 +1,46 @@
-import { WORDS } from "./words";
 
-const LETTER_STATUS = {
-    CORRECT_POSITION:"green",
-    INCORRECT_POSITION:"yellow",
-    NOT_INCLUDED:'gray'
+let currentCell = 0;
+let currentWord="";
+const gameCells = document.querySelectorAll('.board-cell');
+
+const getCurrentCellPosition = (wordPosition=WordleState.getGuessCount(),cellPosition=currentCell)=>wordPosition*MAX_WORD_LENGTH + cellPosition;
+
+const handleAddLetterToCell = (letter)=>{
+    const cellNumber = getCurrentCellPosition();
+    if(currentCell>=MAX_WORD_LENGTH || WordleState.hasWon())return;
+    currentWord+=letter;
+    gameCells[cellNumber].textContent = letter;
+    currentCell++;
 }
 
-const getRandomWordFromDic= (wordDictionnary)=>wordDictionnary[Math.floor(Math.random()*wordDictionnary.length)];
-
-const getLetterStatus = (chosenWord,letter, position)=>{
-    if(position<0 || postion>=chosenWord.length) return;
-    if(!chosenWord.includes(letter)) return LETTER_STATUS.NOT_INCLUDED;
-    else if(chosenWord.charAt(position)===letter) return LETTER_STATUS.CORRECT_POSITION;
-    else return LETTER_STATUS.INCORRECT_POSITION; 
-}
-const getGuessedWordStatus = (chosenWord, guessWord)=>{
-    const wordStatus=guessWord.split("").reduce((previousWordStatus, letter, index)=>{
-        let status = getLetterStatus(chosenWord,letter,index);
-        return {...previousWordStatus,letter:status};
-
-    },{});
-    return wordStatus;
+const handleDeleteLetter = ()=>{
+    currentCell--;
+    currentWord=currentWord.slice(0,currentWord.length-1)
+    const cellNumber = getCurrentCellPosition();
+    gameCells[cellNumber].textContent="";
+    
 }
 
-const GameBoard = (()=>{
+const handleSubmitWord = ()=>{
+    if(currentWord.length<MAX_WORD_LENGTH)return;
+    const wordStatus = WordleState.addGuessWord(currentWord);
+    updateBoard(wordStatus);
+    currentWord="";
+    currentCell=0;
+}
 
-    const MAX_GUESSES=6;
-    const state= {
-        chosenWord:getRandomWordFromDic(WORDS),
-        guesses:0,
-        guessWords:[],
+const updateBoard=(wordStatus)=>{
+    // TODO: change each cell color from current word to reflect wordStatus
+    for(let i=0;i<5;i++){
+        const cellNumber = getCurrentCellPosition(WordleState.getGuessCount()-1,i);
+        gameCells[cellNumber].classList.add(wordStatus[i])
     }
+    
 
-    const addGuessWord = (guessWord)=>{
-        if(state.guesses>=MAX_GUESSES) return;
-        const wordStatus = getGuessedWordStatus(state, guessWord);
-        state={
-            ...state,
-            guesses:state.guesses+1,
-            guessWords: [...state.guessWords,wordStatus]
-        }
-    };
+}
 
-    return{
-        state,
-        addGuessWord
-    }
-})()
-
-
-
-
+const handleResetBoard = ()=>{
+    currentWord="";
+    currentCell=0; 
+    WordleState.reset();
+}
