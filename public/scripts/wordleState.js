@@ -15,7 +15,7 @@ const getLetterStatus = (chosenWord,letter, position)=>{
 const getGuessedWordStatus = (chosenWord, guessWord)=>{
     const wordStatus=guessWord.split("").reduce((previousWordStatus, letter, index)=>{
         let status = getLetterStatus(chosenWord,letter,index);
-        return [...previousWordStatus,status]
+        return [...previousWordStatus,{letter,status}]
 
     },[]);
     return wordStatus;
@@ -40,7 +40,7 @@ const WordleState = (()=>{
         const wordStatus = getGuessedWordStatus(state.chosenWord, guessWord);
         
         state={ ...state,
-            hasWon: wordStatus.every(stat=>stat===LETTER_STATUS.CORRECT_POSITION),
+            hasWon: wordStatus.every(letter=>letter.status===LETTER_STATUS.CORRECT_POSITION),
             guesses:state.guesses+1,
             guessWords: [...state.guessWords,wordStatus]
         }

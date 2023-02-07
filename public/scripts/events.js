@@ -2,7 +2,6 @@
 const keyButtons = document.querySelectorAll('.key-button');
 
 const handleKeyPress = (e)=>{
-    console.log(e.target.value)
     if(e.target.value==='Enter'){
         handleSubmitWord();
     }
