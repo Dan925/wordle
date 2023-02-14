@@ -1,3 +1,9 @@
+:root {
+  --green: #538d4e;
+  --yellow: #b59f3b;
+  --dark-gray: #3a3a3c;
+  --gray: #818384;
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -65,7 +71,7 @@ main {
   width: 4em;
   height: 4em;
   cursor: pointer;
-  background-color: #818384;
+  background-color: var(--gray);
   font-size: 0.9em;
   border-radius: 5px;
 }
@@ -73,17 +79,17 @@ main {
   width: 5em;
   height: 3em;
   cursor: pointer;
-  background-color: #b59f3b;
+  background-color: var(--yellow);
   margin: 0 2em;
 }
 .green {
-  background-color: #538d4e;
+  background-color: var(--green);
 }
 
 .yellow {
-  background-color: #b59f3b;
+  background-color: var(--yellow);
 }
 
 .gray {
-  background-color: #3a3a3c;
+  background-color: var(--dark-gray);
 }
