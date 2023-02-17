@@ -34,6 +34,7 @@ const WordleState = (()=>{
 
     const getGuessCount = ()=>state.guesses;
     const hasWon =  () => state.hasWon;
+    const getChosenWord = ()=>state.chosenWord;
 
     const addGuessWord = (guessWord)=>{
         if(state.guesses>=MAX_GUESSES) return;
@@ -63,7 +64,8 @@ const WordleState = (()=>{
         getGuessCount,
         hasWon,
         addGuessWord,
-        reset
+        reset,
+        getChosenWord
     }
 })()
 

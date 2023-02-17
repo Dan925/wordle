@@ -16,6 +16,7 @@ const handleAddLetterToCell = (letter)=>{
 }
 
 const handleDeleteLetter = ()=>{
+    if(currentCell<=0)return;
     currentCell--;
     currentWord=currentWord.slice(0,currentWord.length-1)
     const cellNumber = getCurrentCellPosition();
@@ -46,7 +47,16 @@ const updateBoard=(wordStatus)=>{
     }
 
     if(WordleState.hasWon()){
+
         resultsElem.textContent=`You have won in ${WordleState.getGuessCount()} guesses!!!`
+        resetBtn.classList.add("reset-btn");
+        resetBtn.textContent="Reset";
+        resultsElem.appendChild(resetBtn);
+
+    
+    }
+    if(WordleState.getGuessCount()==MAX_GUESSES &&!WordleState.hasWon()){
+        resultsElem.textContent=`You have failed to guess the word: "${WordleState.getChosenWord()}". It's ok you can try a new word`
         resetBtn.classList.add("reset-btn");
         resetBtn.textContent="Reset";
         resultsElem.appendChild(resetBtn);
