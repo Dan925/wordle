@@ -4,18 +4,12 @@ const keyButtons = document.querySelectorAll('.key-button');
 const handleKeyPress = (e)=>{
     if(e.target.value==='Enter'){
         // handleSubmitWord();
-        const xmlhttp = new XMLHttpRequest();
-
-          xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
-              if (xmlhttp.status == 200) {
-                die1.innerHTML = xmlhttp.responseText;
-              }
-            }
-          };
-
-          xmlhttp.open("GET", "/api.php?action=checkWord", true);
-          xmlhttp.send();
+         let answer = $.ajax({
+                  type: "GET",
+                  url: "api.php?action=checkWord"
+                }).then(function(data) {
+                  console.log(data);
+                })
     }
     else if(e.target.value === 'Del'){
         handleDeleteLetter();

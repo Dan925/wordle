@@ -7,6 +7,7 @@
     <title>Wordle</title>
     <link rel="stylesheet" href="./styles/index.css" />
     <script src="./scripts/words.js"/></script>
+    <script src="./scripts/jquery.js"/></script>
     <script src="./scripts/wordleState.js"/></script>
   </head>
   <body>
