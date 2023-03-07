@@ -1,0 +1,95 @@
+:root {
+  --green: #538d4e;
+  --yellow: #b59f3b;
+  --dark-gray: #3a3a3c;
+  --gray: #818384;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  padding: 1em 0;
+  background-color: black;
+  color: white;
+}
+body,
+main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+#gameboard {
+  width: 30em;
+  height: 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+#keyboard {
+  width: 40em;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
+}
+.board-row {
+  width: 100%;
+  height: 16.6666%;
+  display: flex;
+  gap: 0.3em;
+}
+.board-cell,
+.key-button,
+.reset-btn {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+}
+.board-cell {
+  width: 20%;
+  height: 100%;
+  border: 1px solid #3a3a3c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+.key-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 0.5em;
+}
+.key-button {
+  width: 4em;
+  height: 4em;
+  cursor: pointer;
+  background-color: var(--gray);
+  font-size: 0.9em;
+  border-radius: 5px;
+}
+.reset-btn {
+  width: 5em;
+  height: 3em;
+  cursor: pointer;
+  background-color: var(--yellow);
+  margin: 0 2em;
+}
+.green {
+  background-color: var(--green);
+}
+
+.yellow {
+  background-color: var(--yellow);
+}
+
+.gray {
+  background-color: var(--dark-gray);
+}
