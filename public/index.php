@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wordle</title>
-    <link rel="stylesheet" href="/public/styles/index.css" />
-    <script src="../public/scripts/words.js"/></script>
-    <script src="../public/scripts/wordleState.js"/></script>
+    <link rel="stylesheet" href="./styles/index.css" />
+    <script src="./scripts/words.js"/></script>
+    <script src="./scripts/wordleState.js"/></script>
   </head>
   <body>
     <header>
@@ -96,7 +96,7 @@
         </div>
       </section>
     </main>
-    <script src="../public/scripts/gameboard.js"/></script>
-    <script src="../public/scripts/events.js"></script>
+    <script src="./scripts/gameboard.js"/></script>
+    <script src="./scripts/events.js"></script>
   </body>
 </html>
