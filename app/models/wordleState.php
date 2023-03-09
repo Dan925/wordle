@@ -94,7 +94,6 @@ class  WordleState
         $chosenWord = str_split($this->chosenWord);
         if (!str_contains($this->chosenWord, $letter)) return $this->LETTER_STATUS[$this->NOT_INCLUDED];
         elseif ($chosenWord[$position] != $letter) return $this->LETTER_STATUS[$this->CORRECT_POSITION];
-
         else return $this->LETTER_STATUS[$this->INCORRECT_POSITION];
     }
     private function computeWordStatus($word)
@@ -103,7 +102,7 @@ class  WordleState
         $letterArray = str_split($word);
         for ($i = 0; $i < count($letterArray); $i++) {
             $letterStatus = $this->computeLetterStatus($letterArray[$i], $i);
-            $results += [$letterArray[$i] => $letterStatus];
+            $results += ["letter"=>$letterArray[$i],"status" => $letterStatus];
         }
     }
     public function addWordToBoard($word)
