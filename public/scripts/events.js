@@ -1,15 +1,11 @@
 
 const keyButtons = document.querySelectorAll('.key-button');
 
+//TODO each of these 3 actions should make a request to api.php
+
 const handleKeyPress = (e)=>{
     if(e.target.value==='Enter'){
-        // handleSubmitWord();
-         let answer = $.ajax({
-                  type: "GET",
-                  url: "api.php?action=checkWord"
-                }).then(function(data) {
-                  console.log(data);
-                })
+        handleSubmitWord();
     }
     else if(e.target.value === 'Del'){
         handleDeleteLetter();
