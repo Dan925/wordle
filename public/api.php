@@ -3,37 +3,28 @@ require_once('_config.php');
 require_once('../app/models/wordleState.php');
 
 session_start();
-$wordle;
-if(!$_SESSION['game']){
-    global $wordle;
-    $wordle = new WordleState();
-    $_SESSION['game'] = $wordle->toJson();
+if (!$_SESSION['game']) {
+    $_SESSION['game'] =  serialize(new WordleState());
 }
-
+$wordle = unserialize($_SESSION['game']);
 switch ($_GET["action"] ?? "version") {
-case "getState":
-    $data=$_SESSION['game'];
-    break;
-case "checkWord":
-    $data=$wordle->toJson();
-    break;
-case "version":
-default:
-    $data = ["version" => "1.0"];
+    case "checkWord":
+        $wordle->checkWord();
+        break;
+    case "deleteLetter":
+        $wordle->deleteLetterFromBoard();
+        break;
+    case "version":
+        $data = ["version" => "1.0"];
 }
 
-if($_POST["data"]){
-    $word = $_POST["data"];
-    $wordle->addWordToBoard($word);
-    $_SESSION['game']=$wordle->toJson();
-    $data=$_SESSION['game'];
+if ($_POST["data"]) {
+    $letter = $_POST["data"];
+    $wordle->addLetterToBoard($letter);
 }
 
-//TODO add  post route to add a letter to the board
-//TODO add  delete route to delete last letter on the board
 //TODO add  get route to reset the game
 
-
-
+$data = $wordle->toJson();
 header("Content-Type: application/json");
 echo json_encode($data);
