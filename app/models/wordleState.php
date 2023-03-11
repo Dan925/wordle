@@ -18,6 +18,8 @@ class  WordleState
         "NOT_INCLUDED" => "gray",
     );
 
+    private $MAX_WORD_LENGTH = $this->MAX_WORD_LENGTH;
+    private $MAX_GUESSES = $this->MAX_GUESSES;
 
     private $WORDS = array(
         "which",
@@ -101,25 +103,32 @@ class  WordleState
     public function addWordToBoard()
     {
         $wordLength = count($this->board[$this->guessCount]);
-        if ($wordLength < 5) return;
+        if ($wordLength < $this->MAX_WORD_LENGTH) return;
         // TODO: go through the current guess word and update the status of each letter
         // increment guessCount
         // check if guessWord match with chosenWord
 
-
-
+        $this->guessCount = $this->guessCount + 1;
+        $this->currentBoardCell = 0;
     }
-//TODO: implement deleteLetter: should delete the last letter added to the board
+
+    public function deleteLetterFromBoard()
+    {
+        if ($this->currentBoardCell == 0) return;
+        $this->currentBoardCell = $this->currentBoardCell - 1;
+        array_pop($this->board[$this->guessCount]);
+    }
 
     public function addLetterToBoad($letter)
     {
-        if ($this->guessCount >= 6) return;
+        if ($this->guessCount >= $this->MAX_GUESSES) return;
         if ($this->board[$this->guessCount]) {
-            if (count($this->board[$this->guessCount]) >= 5) return;
+            if (count($this->board[$this->guessCount]) >= $this->MAX_WORD_LENGTH) return;
             $this->board[$this->guessCount] += ["letter" => $letter, "status" => ""];
         } else {
             $this->board[$this->guessCount] = array("letter" => $letter, "status" => "");
         }
+        $this->currentBoardCell = $this->currentBoardCell + 1;
     }
 
 
