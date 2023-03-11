@@ -25,10 +25,10 @@ const handleAddLetter = (letter) => {
 const handleDeleteLetter = () => {
     $.get("api.php?action=deleteLetter",
         function(data, _) {
-            console.log("data: ", data)
             if (data.currentBoardCell != currentCell) {
-                gameCells[currentCell].textContent = "";
+                console.log("deleted data: ", data)
                 currentCell = data.currentBoardCell;
+                gameCells[currentCell].textContent = "";
             }
         }
     )
@@ -67,17 +67,17 @@ const drawBoard = (gameState) => {
         }
     }
 
-    if (wordleState.hasWon) {
+    if (gameState.hasWon) {
 
-        resultsElem.textContent = `You have won in ${wordleState.guessCount} guesses!!!`
+        resultsElem.textContent = `You have won in ${gameState.guessCount} guesses!!!`
         resetBtn.classList.add("reset-btn");
         resetBtn.textContent = "Reset";
         resultsElem.appendChild(resetBtn);
 
 
     }
-    if (wordleState.guessCount == MAX_GUESSES && !wordleState.hasWon) {
-        resultsElem.textContent = `You have failed to guess the word: "${wordleState.chosenWord}". It's ok you can try a new word`
+    if (gameState.guessCount == MAX_GUESSES && !gameState.hasWon) {
+        resultsElem.textContent = `You have failed to guess the word: "${gameState.chosenWord}". It's ok you can try a new word`
         resetBtn.classList.add("reset-btn");
         resetBtn.textContent = "Reset";
         resultsElem.appendChild(resetBtn);

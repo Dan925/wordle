@@ -72,6 +72,7 @@ class  WordleState
         "light",
         "above",
     );
+    private $lastWordWasChecked = false;
 
     public function __construct()
     {
@@ -113,14 +114,18 @@ class  WordleState
         if ($strWord == $this->chosenWord) $this->hasWon = true;
 
         $this->guessCount = $this->guessCount + 1;
+        $this->lastWordWasChecked = true;
     }
 
     public function deleteLetterFromBoard()
     {
         $wordCell = $this->currentBoardCell % $this->MAX_WORD_LENGTH;
-        if ($wordCell == 0) return;
+        // wont work if at end of the word and the current word
+        if ($this->currentBoardCell == 0 or ($wordCell == 0 and $this->lastWordWasChecked)) return;
         $this->currentBoardCell = $this->currentBoardCell - 1;
         array_pop($this->board[$this->guessCount]);
+        if (count($this->board[$this->guessCount]) == 0)
+            array_pop($this->board);
     }
 
     public function addLetterToBoard($letter)
