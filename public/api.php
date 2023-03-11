@@ -10,9 +10,11 @@ $wordle = unserialize($_SESSION['game']);
 switch ($_GET["action"] ?? "version") {
     case "checkWord":
         $wordle->checkWord();
+    $_SESSION['game'] =  serialize($wordle);
         break;
     case "deleteLetter":
         $wordle->deleteLetterFromBoard();
+    $_SESSION['game'] =  serialize($wordle);
         break;
     case "version":
         $data = ["version" => "1.0"];
@@ -21,6 +23,7 @@ switch ($_GET["action"] ?? "version") {
 if ($_POST["data"]) {
     $letter = $_POST["data"];
     $wordle->addLetterToBoard($letter);
+    $_SESSION['game'] =  serialize($wordle);
 }
 
 //TODO add  get route to reset the game

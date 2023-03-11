@@ -101,7 +101,7 @@
     <script src="./scripts/gameboard.js" />
     </script>
     <script />
-    $( document ).ready(function() {
+$( window ).on('load',function() {
     $.ajax({
     type: "GET",
     url: "api.php?action=getState"

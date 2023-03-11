@@ -80,7 +80,7 @@ class  WordleState
 
     public function resetGame()
     {
-        $this->board = [];
+        $this->board = array();
         $this->guessCount = 0;
         $this->currentBoardCell = 0;
         $this->hasWon = false;
@@ -123,14 +123,14 @@ class  WordleState
         array_pop($this->board[$this->guessCount]);
     }
 
-    public function addLetterToBoad($letter)
+    public function addLetterToBoard($letter)
     {
         if ($this->guessCount >= $this->MAX_GUESSES) return;
         if ($this->board[$this->guessCount]) {
             if (count($this->board[$this->guessCount]) >= $this->MAX_WORD_LENGTH) return;
-            $this->board[$this->guessCount] += ["letter" => $letter, "status" => ""];
+            array_push($this->board[$this->guessCount], array("letter" => $letter, "status" => ""));
         } else {
-            $this->board[$this->guessCount] = array("letter" => $letter, "status" => "");
+            array_push($this->board, array(array("letter" => $letter, "status" => "")));
         }
         $this->currentBoardCell = $this->currentBoardCell + 1;
     }

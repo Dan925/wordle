@@ -11,7 +11,7 @@ const handleKeyPress = (e)=>{
         handleDeleteLetter();
     }
     else{
-        handleAddLetterToCell(e.target.value);
+        handleAddLetter(e.target.value);
     }
 }
 keyButtons.forEach(btn=>btn.addEventListener("click",e=>handleKeyPress(e)))
