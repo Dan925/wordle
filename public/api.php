@@ -10,11 +10,11 @@ $wordle = unserialize($_SESSION['game']);
 switch ($_GET["action"] ?? "version") {
     case "checkWord":
         $wordle->checkWord();
-    $_SESSION['game'] =  serialize($wordle);
+        $_SESSION['game'] =  serialize($wordle);
         break;
     case "deleteLetter":
         $wordle->deleteLetterFromBoard();
-    $_SESSION['game'] =  serialize($wordle);
+        $_SESSION['game'] =  serialize($wordle);
         break;
     case "version":
         $data = ["version" => "1.0"];

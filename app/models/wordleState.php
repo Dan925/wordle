@@ -95,21 +95,22 @@ class  WordleState
 
     private function computeLetterStatus($letter, $position)
     {
-        if ($position < 0 or $position >= count($this->chosenWord)) return;
+        if ($position < 0 or $position >= strlen($this->chosenWord)) return;
         $chosenWord = str_split($this->chosenWord);
-        if (!str_contains($this->chosenWord, $letter)) return $this->LETTER_STATUS[$this->NOT_INCLUDED];
-        elseif ($chosenWord[$position] != $letter) return $this->LETTER_STATUS[$this->CORRECT_POSITION];
+        if (strpos($this->chosenWord, $letter) === false) return $this->LETTER_STATUS[$this->NOT_INCLUDED];
+        elseif ($chosenWord[$position] == $letter) return $this->LETTER_STATUS[$this->CORRECT_POSITION];
         else return $this->LETTER_STATUS[$this->INCORRECT_POSITION];
     }
     public function checkWord()
     {
+if($this->hasWon)return;
         $wordLength = count($this->board[$this->guessCount]);
         if ($wordLength < $this->MAX_WORD_LENGTH) return;
         $strWord = "";
-        for ($i = 0; $i < $wordLength; $i) {
-            $currLetter = $this->$this->board[$this->guessCount][$i]["letter"];
+        for ($i = 0; $i < $wordLength; $i++) {
+            $currLetter = $this->board[$this->guessCount][$i]["letter"];
             $this->board[$this->guessCount][$i]["status"] = $this->computeLetterStatus($currLetter, $i);
-            $strWord += $currLetter;
+            $strWord = $strWord . $currLetter;
         }
         if ($strWord == $this->chosenWord) $this->hasWon = true;
 

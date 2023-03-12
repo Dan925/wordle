@@ -7,10 +7,7 @@ const keyBtns = document.querySelectorAll('.key-button');
 const resultsElem = document.querySelector('.results');
 const resetBtn = document.createElement('button')
 
-// TODO delete the next 3 functions cause it should be implemented in wordleState.php
-
 const handleAddLetter = (letter) => {
-
     $.post("api.php",
         { data: letter },
         function(data, _) {
@@ -36,23 +33,20 @@ const handleDeleteLetter = () => {
 }
 
 const handleSubmitWord = () => {
-    if (currentWord.length < MAX_WORD_LENGTH) return;
     $.get("api.php?action=checkWord",
         function(data, status) {
             console.log("data", data);
             console.log("status", status);
-            drawBoard(newState);
+            drawBoard(data);
         }
     )
 }
 
 
 const drawBoard = (gameState) => {
-    console.log('in here', gameState);
     currentCell = gameState.currentBoardCell;
+    let cellNumber = 0;
     for (let wordStatus of gameState.board) {
-        let cellNumber = 0;
-        console.log(wordStatus);
         for (let i = 0; i < wordStatus.length; i++) {
             wordStatus[i].status && gameCells[cellNumber].classList.add(wordStatus[i].status);
             gameCells[cellNumber].textContent = wordStatus[i].letter;
