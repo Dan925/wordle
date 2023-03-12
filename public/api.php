@@ -30,8 +30,6 @@ if ($_POST["data"]) {
     $_SESSION['game'] =  serialize($wordle);
 }
 
-//TODO add  get route to reset the game
-
 $data = $wordle->toJson();
 header("Content-Type: application/json");
 echo json_encode($data);
