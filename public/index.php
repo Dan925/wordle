@@ -101,14 +101,14 @@
     <script src="./scripts/gameboard.js" />
     </script>
     <script />
-$( window ).on('load',function() {
-    $.ajax({
-    type: "GET",
-    url: "api.php?action=getState"
-    }).then(function(data) {
+    $( window ).on('load',function() {
+    $.get( "api.php?action=getState",
+    function(data){
     drawBoard(data)
-    });
-    })
+    }
+    )
+}
+    )
 
     </script>
     <script src="./scripts/events.js"></script>
