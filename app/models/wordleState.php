@@ -103,7 +103,7 @@ class  WordleState
     }
     public function checkWord()
     {
-if($this->hasWon)return;
+        if ($this->hasWon) return;
         $wordLength = count($this->board[$this->guessCount]);
         if ($wordLength < $this->MAX_WORD_LENGTH) return;
         $strWord = "";
@@ -131,7 +131,7 @@ if($this->hasWon)return;
 
     public function addLetterToBoard($letter)
     {
-        if ($this->guessCount >= $this->MAX_GUESSES) return;
+        if ($this->guessCount >= $this->MAX_GUESSES || $this->hasWon) return;
         if ($this->board[$this->guessCount]) {
             if (count($this->board[$this->guessCount]) >= $this->MAX_WORD_LENGTH) return;
             array_push($this->board[$this->guessCount], array("letter" => $letter, "status" => ""));

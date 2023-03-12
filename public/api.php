@@ -16,6 +16,10 @@ switch ($_GET["action"] ?? "version") {
         $wordle->deleteLetterFromBoard();
         $_SESSION['game'] =  serialize($wordle);
         break;
+    case "reset":
+        $wordle->resetGame();
+        $_SESSION['game'] =  serialize($wordle);
+        break;
     case "version":
         $data = ["version" => "1.0"];
 }

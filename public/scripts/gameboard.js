@@ -11,7 +11,6 @@ const handleAddLetter = (letter) => {
     $.post("api.php",
         { data: letter },
         function(data, _) {
-            console.log("data: ", data)
             if (data.currentBoardCell != currentCell) {
                 gameCells[currentCell].textContent = letter;
                 currentCell = data.currentBoardCell;
@@ -23,7 +22,6 @@ const handleDeleteLetter = () => {
     $.get("api.php?action=deleteLetter",
         function(data, _) {
             if (data.currentBoardCell != currentCell) {
-                console.log("deleted data: ", data)
                 currentCell = data.currentBoardCell;
                 gameCells[currentCell].textContent = "";
             }
@@ -34,14 +32,12 @@ const handleDeleteLetter = () => {
 
 const handleSubmitWord = () => {
     $.get("api.php?action=checkWord",
-        function(data, status) {
-            console.log("data", data);
-            console.log("status", status);
+        function(data, _) {
+            console.log(data);
             drawBoard(data);
         }
     )
 }
-
 
 const drawBoard = (gameState) => {
     currentCell = gameState.currentBoardCell;
@@ -51,9 +47,9 @@ const drawBoard = (gameState) => {
             wordStatus[i].status && gameCells[cellNumber].classList.add(wordStatus[i].status);
             gameCells[cellNumber].textContent = wordStatus[i].letter;
             for (let key of keyBtns) {
-                if (key.value === wordStatus[i].letter) {
+                if (key.value === wordStatus[i].letter && wordStatus[i].status) {
                     key.classList.remove("green", "yellow", "gray");
-                    wordStatus[i].status && key.classList.add(wordStatus[i].status);
+                    key.classList.add(wordStatus[i].status);
                     break;
                 }
             }
@@ -83,15 +79,17 @@ const drawBoard = (gameState) => {
 }
 
 const handleResetBoard = () => {
-    currentWord = "";
-    currentCell = 0;
-    WordleState.reset();
-    gameCells.forEach(cell => {
-        cell.textContent = "";
-        cell.classList.remove("green", "yellow", "gray");
-    });
-    keyBtns.forEach(key => key.classList.remove("green", "yellow", "gray"))
-    resultsElem.textContent = "";
+    $.get("api.php?action=reset",
+        function() {
+            currentCell = 0
+            gameCells.forEach(cell => {
+                cell.textContent = "";
+                cell.classList.remove("green", "yellow", "gray");
+            });
+            keyBtns.forEach(key => key.classList.remove("green", "yellow", "gray"))
+            resultsElem.textContent = "";
+        }
+    )
 
 }
 
