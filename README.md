@@ -3,7 +3,16 @@
 ---
 
 - Author: Dan Ngendahayo
-- Short Description: Wordle game using HTML, CSS and JS
+- Short Description: Wordle game using PHP, HTML, CSS and JS
+
+
+## How to run
+- Navigate to the `public` directory and in a terminal enter the command `php -S localhost:8000`
+- In the browser go to `http://localhost:8000` 
+
+## PHP server structure
+- The Game state will be saved and handled with PHP, meaning: the words and every letter color, the current guess count and current board cell position
+- The `SESSION` super global is used to keep track of the state between refreshs.
 
 ## Gameplay
 
@@ -26,6 +35,5 @@
 ![Game lost screenshot](/docs/assets/lostState.png)
 ![Game won screenshot](/docs/assets/wonState.png)
 
-## System Design Link
-
+## Version 1 System Design Link
 - [System Design Document](./docs//design_system.md)

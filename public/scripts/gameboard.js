@@ -58,8 +58,7 @@ const drawBoard = (gameState) => {
     }
 
     if (gameState.hasWon) {
-
-        resultsElem.textContent = `You have won in ${gameState.guessCount} guesses!!!`
+        resultsElem.textContent = `You have won in ${gameState.guessCount} guesses!!!. Your current best is ${gameState.currentBestScore}`
         resetBtn.classList.add("reset-btn");
         resetBtn.textContent = "Reset";
         resultsElem.appendChild(resetBtn);
