@@ -58,11 +58,11 @@ const drawBoard = (gameState) => {
             cellNumber++;
         }
     }
-    if(gameState.gamesPlayed>0){
+    if (gameState.gamesPlayed > 0) {
         statsElem.textContent = `${gameState.gamesWon} games won out of ${gameState.gamesPlayed}`
     }
-    if(gameState.gamesWon>0){
-        currentBestElem.textContent=`Your current best is ${gameState.currentBestScore} guesses`
+    if (gameState.gamesWon > 0) {
+        currentBestElem.textContent = `Your current best is ${gameState.currentBestScore} guesses`
     }
     if (gameState.hasWon) {
         resultsElem.textContent = `You have won in ${gameState.guessCount} guesses!!!`
