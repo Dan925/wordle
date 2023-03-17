@@ -31,6 +31,7 @@
 
 ## Screenshots
 
+![Score Board](/docs/assets/LeaderBoardFeat.png)
 ![Playing game screenshot](/docs/assets/playingState.png)
 ![Game lost screenshot](/docs/assets/lostState.png)
 ![Game won screenshot](/docs/assets/wonState.png)

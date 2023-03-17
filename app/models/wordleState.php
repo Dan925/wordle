@@ -8,6 +8,8 @@ class  WordleState
     public $guessCount;
     public $currentBoardCell;
     public $currentBestScore = 9999;
+    public $gamesWon = 0;
+    public $gamesPlayed = 0;
 
     private $CORRECT_POSITION = "CORRECT_POSITION";
     private $INCORRECT_POSITION = "INCORRECT_POSITION";
@@ -120,6 +122,16 @@ class  WordleState
             $this->hasWon = true;
             if ($this->guessCount < $this->currentBestScore) $this->currentBestScore = $this->guessCount;
         }
+        if ($this->guessCount == $this->MAX_GUESSES or $this->hasWon) {
+
+            $this->updateStats();
+        }
+    }
+
+    public function updateStats()
+    {
+        $this->gamesPlayed = $this->gamesPlayed + 1;
+        if ($this->hasWon) $this->gamesWon = $this->gamesWon + 1;
     }
 
     public function deleteLetterFromBoard()
@@ -155,6 +167,8 @@ class  WordleState
             "chosenWord" => $this->chosenWord,
             "currentBoardCell" => $this->currentBoardCell,
             "currentBestScore" => $this->currentBestScore,
+            "gamesWon" => $this->gamesWon,
+            "gamesPlayed" => $this->gamesPlayed,
         ];
     }
 

@@ -14,6 +14,7 @@
 <body>
     <header>
         <h1>Wordle</h1>
+        <div class="stats"> </div>
         <div class="currentBest"> </div>
         <span class="results"></span>
     </header>
