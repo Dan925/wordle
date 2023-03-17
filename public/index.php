@@ -14,6 +14,7 @@
 <body>
     <header>
         <h1>Wordle</h1>
+        <div class="currentBest"> </div>
         <span class="results"></span>
     </header>
     <main>
@@ -107,7 +108,7 @@
     drawBoard(data)
     }
     )
-}
+    }
     )
 
     </script>

@@ -4,6 +4,7 @@ const MAX_WORD_LENGTH = 5;
 let currentCell = 0;
 const gameCells = document.querySelectorAll('.board-cell');
 const keyBtns = document.querySelectorAll('.key-button');
+const currentBestElem = document.querySelector('.currentBest');
 const resultsElem = document.querySelector('.results');
 const resetBtn = document.createElement('button')
 
@@ -58,7 +59,8 @@ const drawBoard = (gameState) => {
     }
 
     if (gameState.hasWon) {
-        resultsElem.textContent = `You have won in ${gameState.guessCount} guesses!!!. Your current best is ${gameState.currentBestScore}`
+        currentBestElem.textContent = `Your current best is ${gameState.currentBestScore} guesses`
+        resultsElem.textContent = `You have won in ${gameState.guessCount} guesses!!!`
         resetBtn.classList.add("reset-btn");
         resetBtn.textContent = "Reset";
         resultsElem.appendChild(resetBtn);
